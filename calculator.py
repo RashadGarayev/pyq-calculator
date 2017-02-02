@@ -149,8 +149,17 @@ class window(QWidget):
 
             self.entry.setText(str(i))
     def equ(self):
-                i=self.entry.text()
-                self.entry.setText(str(eval(str(i))))               
+        try:
+            i=self.entry.text()
+            self.entry.setText(str(eval(str(i))))
+        except NameError:
+            self.entry.clear()
+            self.entry.setText('please write only integer')
+        except SyntaxError:
+            self.entry.clear()
+        except ZeroDivisionError:
+            self.entry.setText('0')
+        
     def kvad(self):
         try:
             i=float(self.entry.text())
